@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('albuns', function (Blueprint $table) {
             $table->id();
             $table->String("nome");
-            $table->String("url_foto");
+            $table->String("src_imagem");
             $table->String("data_lancamento");
+
+             $table->foreignId('banda_id')
+              ->constrained('bandas')
+              ->onDelete('cascade');
             
             $table->timestamps();
         });

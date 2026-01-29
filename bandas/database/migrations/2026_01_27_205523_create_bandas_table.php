@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('bandas', function (Blueprint $table) {
             $table->id();
+            
             $table->String("nome");
-            $table->String("url_foto");
-            $table->int("numero_albuns_criados");
+            $table->String("src_foto");
             $table->timestamps();
         });
     }
