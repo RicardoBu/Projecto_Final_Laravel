@@ -8,21 +8,21 @@ use App\Models\Banda;
 class BandaController extends Controller
 {
 
-function addBanda(Request $request) {
+function store(Request $request) { //adicionar
     $banda = new \App\Models\Banda();
     //
 }
 
-function listBandas() {
+function index() {//listar
     $bandas = \App\Models\Banda::all();
     return response()->json($bandas);
 }
 
-function editBanda(Request $request, $id) {
+function update(Request $request, $id) {//editar
     $banda = \App\Models\Banda::find($id);
 }
 
-function deleteBanda($id) {
+function destroy($id) {//apagar
     $banda = \App\Models\Banda::find($id);
 }
     //

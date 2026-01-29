@@ -19,7 +19,9 @@ class Banda extends Model
 
 ];
 
- public function albuns() //nao percebi tudo
+ public function albuns() 
+ //aqui ta-se a dizer que uma banda tem varios albuns
+ // o nome da funcao tem que ser igual ao nome da tabela,onde se busca os dados, em plural
     {
         return $this->hasMany(Album::class);
     }

@@ -19,6 +19,7 @@ class Albuns extends Model
 ];
 
 public function banda()
+//aqui ta-se a dizer que album pertence a 1 banda
     {
         return $this->belongsTo(Banda::class);
     }
