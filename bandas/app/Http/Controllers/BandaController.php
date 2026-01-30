@@ -8,25 +8,25 @@ use App\Models\Banda;
 class BandaController extends Controller
 {
 
-function store(Request $request) { //adicionar
+ public function store(Request $request) { //adicionar
     $banda = new \App\Models\Banda();
     return view('bandas.store', compact('bandas'));
     //
 }
 
-function verBandaId($id) {//ver
+public function verBandaId($id) {//ver
     $banda = Banda::find($id);
-    return view('bandas.see', compact('banda'));
+    return view('bandas.ver_banda_id', compact('banda'));
 
 }
 
-function index() {//listar
+public function index() {//listar
     $bandas = \App\Models\Banda::all();
     return view('bandas.index', compact('bandas') );
     
 }
 
-function update(Request $request, $id) {//editar
+public function update(Request $request, $id) {//editar
     $banda = \App\Models\Banda::find($id);
 }
 

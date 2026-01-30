@@ -1,7 +1,7 @@
 @extends('layouts.fe_master')
 @section('content')
 
-<h1>Lista de Albuns</h1>
+<h1>Detalhes  dos Albuns da Banda Id</h1>
 
 <table class="table">
   <thead>

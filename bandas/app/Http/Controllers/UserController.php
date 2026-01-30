@@ -3,26 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
-class UtilizadorController extends Controller
+class UserController extends Controller
 {
 
-function adduser(Request $request) {
+function index() { // listar
+    $users = \App\Models\User::all();
+    return view('users.index',compact('users') );
+}
+
+function store(Request $request) { // adicionar
    
      $user = new \App\Models\User();
+     return view('users.store', compact('user'));
     //
 }
 
-function listUsers() {
-    $users = \App\Models\User::all();
-    return response()->json($users);
-}
+// function listUsers() {
+//     $users = \App\Models\User::all();
+//     return response()->json($users);
+// }
 
-function editUser(Request $request, $id) {
+function update(Request $request, $id) {
     $user = \App\Models\User::find($id);
 }
 
-function deleteUser($id) {
+function destroy($id) {
     $user = \App\Models\User::find($id);
 }
     //
