@@ -10,12 +10,20 @@ class BandaController extends Controller
 
 function store(Request $request) { //adicionar
     $banda = new \App\Models\Banda();
+    return view('bandas.store', compact('bandas'));
     //
+}
+
+function verBandaId($id) {//ver
+    $banda = Banda::find($id);
+    return view('bandas.see', compact('banda'));
+
 }
 
 function index() {//listar
     $bandas = \App\Models\Banda::all();
-    return response()->json($bandas);
+    return view('bandas.index', compact('bandas') );
+    
 }
 
 function update(Request $request, $id) {//editar
@@ -23,7 +31,10 @@ function update(Request $request, $id) {//editar
 }
 
 function destroy($id) {//apagar
-    $banda = \App\Models\Banda::find($id);
+
+    $banda = Banda::findorFail($id);
+    $banda->delete();
+    return redirect()->route('bandas.index')->with('success', 'Banda apagada com sucesso!');
 }
     //
 }

@@ -8,21 +8,22 @@ use App\Models\Album;
 class AlbumController extends Controller
 {
 
-function addAlbum(Request $request) {
+function store(Request $request) {
     $banda = new \App\Models\Banda();
     //
 }
 
-function listAlbuns() {
+function index() {
     $albuns = \App\Models\Album::all();
-    return response()->json($albuns);
+    return view('albuns.list', compact('albuns') );
+    
 }
 
-function editAlbum(Request $request, $id) {
+function update(Request $request, $id) {
     $album = \App\Models\Album::find($id);
 }
 
-function deleteAlbum($id) {
+function destroy($id) {
     $album = \App\Models\Album::find($id);
 }
     //
