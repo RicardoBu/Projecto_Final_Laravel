@@ -7,8 +7,11 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Nome da banda</th>
-      <th>Source da foto</th>
+      <th>Tipo</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Detalhes</th>
+      <th>Acoes</th>
       
     </tr>
   </thead>
@@ -16,15 +19,15 @@
     @foreach($users as $user)
       <tr>
         <td>{{ $user->id }}</td>
-        <td>{{ $user->name }}</td>
-        <td><img src="{{$user->photo? asset('storage/'.$user->source_foto) : asset('images/nophoto.jpg')}}" alt=""></td>
-        <td>{{ $user->source_foto }}</td>
+        <td>{{ $user->type }}</td>
+        <td>{{ $user->username }}</td>
+        <td>{{ $user->email }}</td>
         
         <td>
-          <a href="{{ route('bandas.albuns', $user->id) }}">Detalhes da banda</a>
+          <a href="{{ route('users.details_user', $user->id) }}" >Detalhes do user</a>
         </td>
         <td>
-          <a href="{{ route('users.store') }}">Adicionar</a>
+          <a href="{{ route('users.add_user') }}" class="btn btn-primary">Adicionar user</a>
           <form action="{{ route('users.destroy', $user->id) }}" method="POST">
             @csrf
             @method('DELETE')

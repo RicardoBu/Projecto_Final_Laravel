@@ -14,6 +14,8 @@
     </tr>
   </thead>
   <tbody>
+  
+
     @foreach($bandas as $banda)
       <tr>
         <td>{{ $banda->id }}</td>

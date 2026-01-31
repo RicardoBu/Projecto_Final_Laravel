@@ -11,8 +11,11 @@ Route::get('/', function () {
 
 //BANDAS
 
-//Adicionar banda
-Route::get('/bandas/adicionar', [BandaController::class,'store' ] )->name('bandas.store');
+//formulario adicionar banda
+Route::get('/bandas/adicionar', [BandaController::class,'create' ] )->name('bandas.add_banda');
+
+// Receber o POST do formulário
+Route::post('/bandas/adicionar', [BandaController::class,'store'])->name('bandas.store');
 
 //Listar bandas
 Route::get('/bandas', [BandaController::class,'index' ] )->name('bandas.index');
@@ -32,8 +35,11 @@ Route::delete('/bandas/{id}', [BandaController::class,'destroy' ] )->name('banda
 
 //ALBUNS
 
-//Adicionar album
-Route::get('/albuns/adicionar', [AlbumController::class,'store' ] )->name('albuns.store');
+//formulario adicionar album
+Route::get('/albuns/adicionar', [AlbumController::class,'create' ] )->name('albuns.add_album');
+
+// Receber o POST do formulário
+Route::post('/bandas/adicionar', [AlbumController::class,'store'])->name('bandas.store');
 
 //Listar albuns
 Route::get('/albuns', [AlbumController::class,'index' ] )->name('albuns.index');
@@ -50,14 +56,17 @@ Route::delete('/albuns/{id}', [AlbumController::class,'destroy' ] )->name('albun
 
 //USERS
 
-//Adicionar user
-Route::get('/users/adicionar', [UserController::class,'store' ] )->name('users.store');
+//formulario adicionar user
+Route::get('/users/adicionar', [UserController::class,'create' ] )->name('users.add_user');
+
+// Receber o POST do formulário
+Route::post('/users/adicionar', [UserController::class,'store'])->name('users.store');
 
 //Listar users
 Route::get('/users', [UserController::class,'index' ] )->name('users.index');
 
 // Ver user individual
-Route::get('/users/{id}', [UserController::class,'verUserId' ] )->name('users.ver_user_id');
+Route::get('/users/{id}', [UserController::class,'verUserId' ] )->name('users.details_user');
 
 //Editar users
 Route::put('/users/{id}', [UserController::class,'update' ] )->name('users.update');

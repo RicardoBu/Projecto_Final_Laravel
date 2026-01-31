@@ -8,6 +8,10 @@ use App\Models\Album;
 class AlbumController extends Controller
 {
 
+public function create() {
+    return view('albuns.add_album');
+}
+
 public function store(Request $request) {
     $album = new \App\Models\Album();
     // $album->nome = $request->input('nome');
@@ -18,7 +22,7 @@ public function store(Request $request) {
 
 public function verAlbumId($id) {//ver
     $album = Album::find($id);
-    return view('albuns.ver_album_id', compact('album'));
+    return view('albuns.ver', compact('album'));
 
 }
 
@@ -32,12 +36,13 @@ public function update(Request $request, $id) {
     $album = \App\Models\Album::find($id);
 }
 
-public function destroy($id) {
+function destroy($id) {
     $album = \App\Models\Album::find($id);
 }
 
 public function verAlbunsBandaId($bandaId) {
     $albuns = Album::where('banda_id', $bandaId)->get();
+    
     return view('albuns.details_album_banda_id', compact('albuns'));
     //
 }

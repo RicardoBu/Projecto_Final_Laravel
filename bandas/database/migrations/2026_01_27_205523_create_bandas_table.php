@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             
             $table->String("nome");
-            $table->String("src_foto");
+            $table->String("src_foto")->nullable();;
             $table->timestamps();
         });
     }

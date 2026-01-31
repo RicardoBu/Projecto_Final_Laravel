@@ -8,15 +8,29 @@ use App\Models\Banda;
 class BandaController extends Controller
 {
 
+public function create() { //formulario adicionar
+    return view('bandas.add_banda'); // criar a view resources/views/bandas/add_banda.blade.php
+}
  public function store(Request $request) { //adicionar
-    $banda = new \App\Models\Banda();
-    return view('bandas.store', compact('bandas'));
+   
+
+    $request->validate([
+        'nome' => 'required|string|max:50',
+        
+    ]);
+
+    Banda::create([
+        'nome' => $request->nome,
+        
+    ]);
+
+    return redirect()->route('bandas.index')->with('success', 'Usuário criado com sucesso!');
     //
 }
 
 public function verBandaId($id) {//ver
-    $banda = Banda::find($id);
-    return view('bandas.ver_banda_id', compact('banda'));
+    $bandas = Banda::find($id);
+    return view('bandas.ver_banda_id', compact('bandas'));
 
 }
 

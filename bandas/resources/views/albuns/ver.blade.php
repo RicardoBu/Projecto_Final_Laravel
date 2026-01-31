@@ -1,7 +1,7 @@
 @extends('layouts.fe_master')
 @section('content')
 
-<h1>Lista de Albuns</h1>
+<h1>Detalhes  dos Albuns da Banda Id</h1>
 
 <table class="table">
   <thead>
@@ -11,13 +11,11 @@
       <th>Source da imagem</th>
       <th>Data de lançamento</th>
       <th>Banda ID</th>
-      <th>Detalhes</th>
-      <th>Acoes</th>
       
     </tr>
   </thead>
   <tbody>
-    @foreach($albuns as $album)
+    
       <tr>
         <td>{{ $album->id }}</td>
         <td>{{ $album->nome }}</td>
@@ -38,7 +36,7 @@
         </td>
         
       </tr>
-    @endforeach
+    
   </tbody>
 </table>
 @endsection

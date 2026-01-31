@@ -8,7 +8,9 @@
     <tr>
       <th>Id</th>
       <th>Nome da banda</th>
-      <th>Source da foto</th>
+      <th> Foto</th>
+      <th>Albuns da banda</th>
+      <th>Acoes</th>
       
     </tr>
   </thead>
@@ -21,10 +23,11 @@
         <td>{{ $banda->source_foto }}</td>
         
         <td>
-          <a href="{{ route('bandas.albuns', $banda->id) }}">Detalhes da banda</a>
+          <button><a href="{{ route('bandas.ver_albuns_banda_id', $banda->id) }}">Ver albuns da banda</a></button>
+          
         </td>
         <td>
-          <a href="{{ route('bandas.store') }}">Adicionar</a>
+          <a href="{{ route('bandas.add_banda') }}">Adicionar</a>
           <form action="{{ route('bandas.destroy', $banda->id) }}" method="POST">
             @csrf
             @method('DELETE')
