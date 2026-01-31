@@ -27,11 +27,12 @@
           <a href="{{ route('users.details_user', $user->id) }}" >Detalhes do user</a>
         </td>
         <td>
-          <a href="{{ route('users.add_user') }}" class="btn btn-primary">Adicionar user</a>
+          <a href="{{ route('users.add_user') }}" class="btn btn-primary">Adicionar </a>
+          <a href="{{ route('users.update', $user->id) }}" class="btn btn-warning">Editar</a>
           <form action="{{ route('users.destroy', $user->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit">Remover</button>
+            <button type="submit" class="btn btn-danger">Remover</button>
           </form>
         </td>
         

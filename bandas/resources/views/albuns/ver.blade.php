@@ -23,17 +23,7 @@
         <td>{{ $album->data_lancamento }}</td>
         <td>{{ $album->banda_id }}</td>
         
-        <td>
-          <a href="{{ route('albuns.ver_album_id', $album->id) }}">Ver</a>
-        </td>
-        <td>
-          <a href="{{ route('albuns.store') }}">Adicionar</a>
-          <form action="{{ route('albuns.destroy', $album->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Remover</button>
-          </form>
-        </td>
+     
         
       </tr>
     

@@ -23,7 +23,7 @@
         <td>{{ $album->data_lancamento }}</td>
         <td>{{ $album->banda_id }}</td>
         
-        <td>
+        <!-- <td>
           <a href="{{ route('albuns.ver_album_id', $album->id) }}">Ver</a>
         </td>
         <td>
@@ -33,7 +33,7 @@
             @method('DELETE')
             <button type="submit">Remover</button>
           </form>
-        </td>
+        </td> -->
         
       </tr>
     @endforeach

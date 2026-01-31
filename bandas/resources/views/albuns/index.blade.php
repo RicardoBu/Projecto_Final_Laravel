@@ -21,6 +21,13 @@
       <tr>
         <td>{{ $album->id }}</td>
         <td>{{ $album->nome }}</td>
+        <td><img 
+        src="{{ $album->src_imagem
+            ? asset('storage/albuns/' . $album->src_imagem)
+            : asset('storage/nophoto.jpg') }}"
+        width="100"
+        alt="Foto da banda"
+    ></td>
         <td>{{ $album->source_imagem }}</td>
         <td>{{ $album->data_lancamento }}</td>
         <td>{{ $album->banda_id }}</td>
@@ -29,11 +36,12 @@
           <a href="{{ route('albuns.ver_album_id', $album->id) }}">Ver</a>
         </td>
         <td>
-          <a href="{{ route('albuns.store') }}">Adicionar</a>
+          <a href="{{ route('albuns.add_album') }}" class="btn btn-primary">Adicionar </a>
+          <a href="{{ route('albuns.update', $album->id) }}" class="btn btn-warning">Editar</a>
           <form action="{{ route('albuns.destroy', $album->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit">Remover</button>
+            <button type="submit" class="btn btn-danger">Remover</button>
           </form>
         </td>
         

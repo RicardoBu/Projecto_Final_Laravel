@@ -39,7 +39,7 @@ Route::delete('/bandas/{id}', [BandaController::class,'destroy' ] )->name('banda
 Route::get('/albuns/adicionar', [AlbumController::class,'create' ] )->name('albuns.add_album');
 
 // Receber o POST do formulário
-Route::post('/bandas/adicionar', [AlbumController::class,'store'])->name('bandas.store');
+Route::post('/bandas/adicionar', [AlbumController::class,'store'])->name('albuns.store');
 
 //Listar albuns
 Route::get('/albuns', [AlbumController::class,'index' ] )->name('albuns.index');

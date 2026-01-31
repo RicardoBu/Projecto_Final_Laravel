@@ -9,7 +9,7 @@
       <th>Id</th>
       <th>Nome da banda</th>
       <th> Foto</th>
-      <th>Albuns da banda</th>
+      <!-- <th>Albuns da banda</th> -->
       <th>Acoes</th>
       
     </tr>
@@ -19,19 +19,30 @@
       <tr>
         <td>{{ $banda->id }}</td>
         <td>{{ $banda->nome }}</td>
-        <td><img src="{{$banda->photo? asset('storage/'.$banda->source_foto) : asset('images/nophoto.jpg')}}" alt=""></td>
-        <td>{{ $banda->source_foto }}</td>
+       <td>
+    <img 
+        src="{{ $banda->src_foto
+            ? asset('storage/bandas/' . $banda->src_foto)
+            : asset('storage/nophoto.jpg') }}"
+        width="100"
+        alt="Foto da banda"
+    >
+</td>
+
+<td>{{ $banda->src_foto }}</td>
+
         
         <td>
           <button><a href="{{ route('bandas.ver_albuns_banda_id', $banda->id) }}">Ver albuns da banda</a></button>
           
         </td>
         <td>
-          <a href="{{ route('bandas.add_banda') }}">Adicionar</a>
+          <a href="{{ route('bandas.add_banda') }}" class="btn btn-primary">Adicionar </a>
+          <a href="{{ route('bandas.update', $banda->id) }}" class="btn btn-warning">Editar</a>
           <form action="{{ route('bandas.destroy', $banda->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit">Remover</button>
+            <button type="submit" class="btn btn-danger">Remover</button>
           </form>
         </td>
         
