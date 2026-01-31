@@ -14,6 +14,13 @@
     </script>
 </head>
 
+@auth
+    <form method="POST" action="/logout" style="display:inline;">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
+@endauth
+
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">

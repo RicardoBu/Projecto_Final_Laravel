@@ -9,6 +9,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth')->get('/teste-login', function () {
+    dd(auth()->user());
+});
+
+
+Route::middleware('auth')->get('/dashboard', function () {
+    return view('admin.dashboard');
+})->name('dashboard');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('bandas', BandaController::class)
+        ->except(['index', 'show']);
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/bandas/{id}/edit', [BandaController::class,'edit' ] )->name('bandas.edit');
+    Route::put('/bandas/{id}', [BandaController::class,'update' ] )->name('bandas.update');
+});
+
+Route::get('/bandas', [BandaController::class,'index' ] )->name('bandas.index');
+Route::get('/bandas/{id}', [BandaController::class,'verBandaId' ] )->name('bandas.ver_banda_id');
+
+
+
+
 //BANDAS
 
 //formulario adicionar banda

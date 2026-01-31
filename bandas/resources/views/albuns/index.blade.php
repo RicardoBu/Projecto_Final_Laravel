@@ -31,7 +31,6 @@
         <td>{{ $album->source_imagem }}</td>
         <td>{{ $album->data_lancamento }}</td>
         <td>{{ $album->banda_id }}</td>
-        
         <td>
           <a href="{{ route('albuns.ver_album_id', $album->id) }}">Ver</a>
         </td>
