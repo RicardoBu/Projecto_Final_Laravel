@@ -11,12 +11,14 @@ class BandaSeeder extends Seeder
     {
         Banda::create([
             'nome' => 'The Beatles',
-            'src_foto' => 'beatles.jpg',
+            'src_foto' => 'bandas/beatles.jpg',
+            'numero_albuns' => 2,
         ]);
 
         Banda::create([
             'nome' => 'U2',
-            'src_foto' => 'u2.jpg',
+            'src_foto' => 'bandas/u2.avif',
+            'numero_albuns' => 2,
         ]);
     }
 }

@@ -9,7 +9,8 @@
       <th>Id</th>
       <th>Nome da banda</th>
       <th> Foto</th>
-      <!-- <th>Albuns da banda</th> -->
+      <th>Numero de albuns</th>
+      <th>Mais detalhes</th>
       <th>Acoes</th>
       
     </tr>
@@ -23,14 +24,16 @@
        <td>
     <img 
         src="{{ $banda->src_foto
-            ? asset('storage/bandas/' . $banda->src_foto)
+            ? asset('storage/' . $banda->src_foto)
             : asset('storage/nophoto.jpg') }}"
         width="100"
         alt="Foto da banda"
     >
 </td>
+<td>{{ $banda->albuns_count }}</td>
 
-<td>{{ $banda->src_foto }}</td>
+
+<!-- <td>{{ $banda->src_foto }}</td> -->
 
         
         <td>
@@ -40,7 +43,7 @@
         </td>
         <td>
           @if(auth()->check() && auth()->user()->type === 'admin')
-          <a href="{{ route('bandas.add_banda') }}" class="btn btn-primary">Adicionar </a>
+          
           <a href="{{ route('bandas.update', $banda->id) }}" class="btn btn-warning">Editar</a>
           
           <form action="{{ route('bandas.destroy', $banda->id) }}" method="POST">
@@ -63,4 +66,7 @@
     @endforeach
   </tbody>
 </table>
+@if(auth()->check() && auth()->user()->type === 'admin')
+<a href="{{ route('bandas.add_banda') }}" class="btn btn-primary">Adicionar Banda </a>
+@endif
 @endsection

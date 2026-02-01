@@ -16,6 +16,7 @@ return new class extends Migration
             
             $table->String("nome");
             $table->String("src_foto")->nullable();;
+            $table->integer("numero_albuns")->nullable();
             $table->timestamps();
         });
     }

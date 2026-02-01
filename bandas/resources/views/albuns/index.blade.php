@@ -23,12 +23,12 @@
         <td>{{ $album->nome }}</td>
         <td><img 
         src="{{ $album->src_imagem
-            ? asset('storage/albuns/' . $album->src_imagem)
+            ? asset('storage/' . $album->src_imagem)
             : asset('storage/nophoto.jpg') }}"
         width="100"
         alt="Foto da banda"
     ></td>
-        <td>{{ $album->source_imagem }}</td>
+       
         <td>{{ $album->data_lancamento }}</td>
         <td>{{ $album->banda_id }}</td>
         <td>
@@ -36,7 +36,7 @@
         </td>
         <td>
            @if(auth()->check() && auth()->user()->type === 'admin')
-          <a href="{{ route('albuns.add_album') }}" class="btn btn-primary">Adicionar </a>
+         
           <a href="{{ route('albuns.update', $album->id) }}" class="btn btn-warning">Editar</a>
           <form action="{{ route('albuns.destroy', $album->id) }}" method="POST">
             @csrf
@@ -57,4 +57,8 @@
     @endforeach
   </tbody>
 </table>
+
+@if(auth()->check() && auth()->user()->type === 'admin')
+ <a href="{{ route('albuns.add_album') }}" class="btn btn-primary">Adicionar Album </a>
+@endif
 @endsection

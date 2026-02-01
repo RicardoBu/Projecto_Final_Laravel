@@ -4,21 +4,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BandaController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->get('/teste-login', function () {
-    dd(auth()->user());
-});
+// Route::middleware('auth')->get('/teste-login', function () {
+//     dd(auth()->user());
+// });
 
 
 Route::middleware('auth')->get('/dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::resource('bandas', BandaController::class)
         ->except(['index', 'show']);
 });
@@ -30,7 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/bandas', [BandaController::class,'index' ] )->name('bandas.index');
-Route::get('/bandas/{id}', [BandaController::class,'verBandaId' ] )->name('bandas.ver_banda_id');
+
 
 
 
@@ -47,7 +48,7 @@ Route::post('/bandas/adicionar', [BandaController::class,'store'])->name('bandas
 Route::get('/bandas', [BandaController::class,'index' ] )->name('bandas.index');
 
 // Ver banda individual
-Route::get('/bandas/{id}/', [BandaController::class,'verBandaId' ] )->name('bandas.ver_banda_id');
+// Route::get('/bandas/{id}/', [BandaController::class,'verBandaId' ] )->name('bandas.ver_banda_id');
 
 // listar albuns de uma banda
 Route::get('/bandas/{banda}/albuns', [AlbumController::class,'verAlbunsBandaId' ] )->name('bandas.ver_albuns_banda_id');
@@ -58,6 +59,9 @@ Route::put('/bandas/{id}', [BandaController::class,'update' ] )->name('bandas.up
 //Apagar bandas
 Route::delete('/bandas/{id}', [BandaController::class,'destroy' ] )->name('bandas.destroy');
 
+// Ver banda individual
+Route::get('/bandas/{id}/', [BandaController::class,'verBandaId' ] )->name('bandas.ver_banda_id');
+
 
 //ALBUNS
 
@@ -65,7 +69,7 @@ Route::delete('/bandas/{id}', [BandaController::class,'destroy' ] )->name('banda
 Route::get('/albuns/adicionar', [AlbumController::class,'create' ] )->name('albuns.add_album');
 
 // Receber o POST do formulário
-Route::post('/bandas/adicionar', [AlbumController::class,'store'])->name('albuns.store');
+Route::post('/albuns/adicionar', [AlbumController::class,'store'])->name('albuns.store');
 
 //Listar albuns
 Route::get('/albuns', [AlbumController::class,'index' ] )->name('albuns.index');

@@ -14,12 +14,7 @@
     </script>
 </head>
 
-@auth
-    <form method="POST" action="/logout" style="display:inline;">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
-@endauth
+
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -32,6 +27,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/users">Users</a>
                     </li>
                     <li class="nav-item">
@@ -40,6 +38,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/albuns">Albuns</a>
                     </li>
+
+                    @auth
+    <form method="POST" action="/logout" style="display:inline;">
+        @csrf
+        <li class="nav-item">
+
+             <button type="submit" class="btn btn-link nav-link">Logout</button>
+        </li>
+        
+    </form>
+@endauth
                     
                 </ul>
             </div>

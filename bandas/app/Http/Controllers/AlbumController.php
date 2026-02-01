@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Album;
-
+use Illuminate\Support\Facades\DB;
 class AlbumController extends Controller
 {
 
@@ -13,11 +13,32 @@ public function create() {
 }
 
 public function store(Request $request) {
-    $album = new \App\Models\Album();
-    // $album->nome = $request->input('nome');
-    // $album->source_imagem = $request->input('source_imagem');
-    // $album->banda_id = $request->input('banda_id');
-    // $album->save();
+    // $album = new \App\Models\Album();
+
+     $request->validate([
+        'nome' => 'required|string|max:50',
+        'src_imagem' => 'nullable|image|max:2048',
+        'banda_id' => 'required|exists:bandas,id',
+        'data_lancamento' => 'nullable|date',
+
+    ]);
+
+    $caminhoImagem = null;
+    if ($request->hasFile('src_imagem')) {
+        $caminhoImagem = $request->file('src_imagem')->store('albuns', 'public');
+    }
+
+     DB::table('albuns')->insert([
+        'nome' => $request->nome,
+        'src_imagem' => $caminhoImagem,
+        'banda_id' => $request->banda_id,
+        'data_lancamento' => $request->data_lancamento,
+        'created_at' => now(),
+    'updated_at' => now(),
+    ]);
+
+     return redirect()->route('albuns.index')->with('success', 'Album adicionado com sucesso!');
+    
 }
 
 public function verAlbumId($id) {//ver

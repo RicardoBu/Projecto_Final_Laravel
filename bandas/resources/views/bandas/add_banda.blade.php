@@ -4,7 +4,7 @@
 
  
     <!-- Formulário de adicionar banda -->
-<form method="POST" action="{{ route('bandas.store') }}">
+<form method="POST" action="{{ route('bandas.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="name" class="form-label">Nome da banda</label>
@@ -16,7 +16,7 @@
 
     <div class="mb-3">
         <label for="name" class="form-label">Foto da banda</label>
-        <input required name="src_foto" type="file" class="form-control" id="src_foto">
+        <input required name="src_foto" type="file" accept="image/*" class="form-control" id="src_foto">
         @error('src_foto')
             <p class="text-danger">Erro na foto da banda</p>
         @enderror
@@ -24,7 +24,9 @@
 
     
 
+    
 
-    <button type="submit" class="btn btn-success">Adicionar User</button>
+
+    <button type="submit" class="btn btn-success">Adicionar Banda</button>
 </form>
 @endsection
