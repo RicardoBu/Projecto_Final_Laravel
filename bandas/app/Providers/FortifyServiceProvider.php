@@ -59,7 +59,7 @@ class FortifyServiceProvider extends ServiceProvider
     return new class implements LoginResponse {
         public function toResponse($request)
         {
-            return redirect('/bandas');
+            return redirect()->route('bandas.index');
         }
     };
 });

@@ -53,9 +53,10 @@ Route::get('/bandas', [BandaController::class,'index' ] )->name('bandas.index');
 // listar albuns de uma banda
 Route::get('/bandas/{banda}/albuns', [AlbumController::class,'verAlbunsBandaId' ] )->name('bandas.ver_albuns_banda_id');
 
-
+//formulario editar banda
+Route::get('/bandas/{id}/edit', [BandaController::class,'edit' ] )->name('bandas.edit');
 //Editar bandas
-Route::put('/bandas/{id}', [BandaController::class,'update' ] )->name('bandas.update');
+Route::put('/bandas/{banda}', [BandaController::class,'update' ] )->name('bandas.update');
 //Apagar bandas
 Route::delete('/bandas/{id}', [BandaController::class,'destroy' ] )->name('bandas.destroy');
 

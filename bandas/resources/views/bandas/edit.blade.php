@@ -4,8 +4,9 @@
 @section('content')
     
     <!-- Formulário de editar banda -->
-<form method="POST" action="{{ route('bandas.update', ['id' => $banda->id]) }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('bandas.update', ['banda' => $banda->id]) }}" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
       <div class="mb-3">
         <label for="name" class="form-label">Nome da banda</label>
         <input required name="nome" type="text" class="form-control" id="username" value="{{ $banda->nome }}">
@@ -22,6 +23,6 @@
         @enderror
     </div>
 
-    <button type="submit" class="btn btn-success">Adicionar Banda</button>
+    <button type="submit" class="btn btn-success">Editar Banda</button>
 </form>
 @endsection

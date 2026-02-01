@@ -58,7 +58,9 @@ public function update(Request $request, $id) {
 }
 
 function destroy($id) {
-    $album = \App\Models\Album::find($id);
+    $album = \App\Models\Album::findorFail($id);
+    $album->delete();
+    return redirect()->route('albuns.index')->with('success', 'Album eliminado com sucesso!');
 }
 
 public function verAlbunsBandaId($bandaId) {

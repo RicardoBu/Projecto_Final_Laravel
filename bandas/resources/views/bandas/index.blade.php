@@ -44,7 +44,7 @@
         <td>
           @if(auth()->check() && auth()->user()->type === 'admin')
           
-          <a href="{{ route('bandas.update', $banda->id) }}" class="btn btn-warning">Editar</a>
+          <a href="{{ route('bandas.edit', $banda->id) }}" class="btn btn-warning">Editar</a>
           
           <form action="{{ route('bandas.destroy', $banda->id) }}" method="POST">
             @csrf
@@ -53,7 +53,7 @@
             @endif
 
             @if(auth()->check() && auth()->user()->type === 'user')
-          <a href="{{ route('bandas.update', $banda->id) }}" class="btn btn-warning">Editar</a>
+          <a href="{{ route('bandas.edit', $banda->id) }}" class="btn btn-warning">Editar</a>
           @endif
 
            

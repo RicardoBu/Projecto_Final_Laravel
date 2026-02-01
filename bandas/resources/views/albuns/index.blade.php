@@ -47,7 +47,7 @@
             @endif
 
           @if(auth()->check() && auth()->user()->type === 'user')
-          <a href="{{ route('bandas.update', $album->id) }}" class="btn btn-warning">Editar</a>
+          <a href="{{ route('albuns.update', $album->id) }}" class="btn btn-warning">Editar</a>
           @endif
           </form>
           
