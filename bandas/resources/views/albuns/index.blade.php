@@ -35,13 +35,22 @@
           <a href="{{ route('albuns.ver_album_id', $album->id) }}">Ver</a>
         </td>
         <td>
+           @if(auth()->check() && auth()->user()->type === 'admin')
           <a href="{{ route('albuns.add_album') }}" class="btn btn-primary">Adicionar </a>
           <a href="{{ route('albuns.update', $album->id) }}" class="btn btn-warning">Editar</a>
           <form action="{{ route('albuns.destroy', $album->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Remover</button>
+
+
+            @endif
+
+          @if(auth()->check() && auth()->user()->type === 'user')
+          <a href="{{ route('bandas.update', $album->id) }}" class="btn btn-warning">Editar</a>
+          @endif
           </form>
+          
         </td>
         
       </tr>
