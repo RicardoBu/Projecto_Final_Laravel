@@ -67,6 +67,6 @@
   </tbody>
 </table>
 @if(auth()->check() && auth()->user()->type === 'admin')
-<a href="{{ route('bandas.add_banda') }}" class="btn btn-primary">Adicionar Banda </a>
+<a href="{{ route('bandas.create') }}" class="btn btn-primary">Adicionar Banda </a>
 @endif
 @endsection

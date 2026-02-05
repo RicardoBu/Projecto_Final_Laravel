@@ -3,13 +3,13 @@
 
 
  
-    <!-- Formulário de adicionar user -->
-<form method="POST" action="{{ route('albuns.update', ['album' => $album->id]) }}" enctype="multipart/form-data">
+    <!-- Formulário de editar album -->
+<form method="POST" action="{{ route('albuns.update',  $album->id) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-3">
         <label for="nome" class="form-label">Nome do Album</label>
-        <input required name="nome" type="text" class="form-control" id="nome">
+        <input required name="nome" type="text" class="form-control" id="nome" value="{{ $album->nome }}">
         @error('nome')
             <p class="text-danger">Erro no nome do album</p>
         @enderror
@@ -39,6 +39,6 @@
         @enderror
     </div>
 
-    <button type="submit" class="btn btn-success">Adicionar Album</button>
+    <button type="submit" class="btn btn-success">Editar Album</button>
 </form>
 @endsection

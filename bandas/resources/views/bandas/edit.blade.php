@@ -4,7 +4,7 @@
 @section('content')
     
     <!-- Formulário de editar banda -->
-<form method="POST" action="{{ route('bandas.update', ['banda' => $banda->id]) }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('bandas.update',  $banda->id) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
       <div class="mb-3">

@@ -16,24 +16,21 @@
   </thead>
   <tbody>
     @foreach($albuns as $album)
+   
       <tr>
         <td>{{ $album->id }}</td>
         <td>{{ $album->nome }}</td>
-        <td>{{ $album->source_imagem }}</td>
+      
+        <td><img 
+        src="{{ $album->src_imagem
+            ? asset('storage/' . $album->src_imagem)
+            : asset('storage/nophoto.jpg') }}"
+        width="100"
+        alt="Foto da banda"
+    ></td>
         <td>{{ $album->data_lancamento }}</td>
         <td>{{ $album->banda_id }}</td>
-        
-        <!-- <td>
-          <a href="{{ route('albuns.ver_album_id', $album->id) }}">Ver</a>
-        </td>
-        <td>
-          <a href="{{ route('albuns.store') }}">Adicionar</a>
-          <form action="{{ route('albuns.destroy', $album->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Remover</button>
-          </form>
-        </td> -->
+       
         
       </tr>
     @endforeach

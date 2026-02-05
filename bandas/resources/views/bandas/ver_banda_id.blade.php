@@ -16,7 +16,7 @@
   <tbody>
   
 
-    @foreach($bandas as $banda)
+ 
       <tr>
         <td>{{ $banda->id }}</td>
         <td>{{ $banda->nome }}</td>
@@ -24,7 +24,7 @@
         <td>{{ $banda->source_foto }}</td>
         
         <td>
-          <a href="{{ route('bandas.ver_banda_id', $banda->id) }}">Detalhes da banda</a>
+          <a href="{{ route('bandas.show', $banda->id) }}">Detalhes da banda</a>
         </td>
         <td>
           <a href="{{ route('bandas.store') }}">Adicionar</a>
@@ -36,7 +36,7 @@
         </td>
         
       </tr>
-    @endforeach
+  
   </tbody>
 </table>
 @endsection

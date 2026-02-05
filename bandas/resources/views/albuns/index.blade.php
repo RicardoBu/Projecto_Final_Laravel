@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($albuns as $album)
+   @foreach($albuns as $album)
       <tr>
         <td>{{ $album->id }}</td>
         <td>{{ $album->nome }}</td>
@@ -32,12 +32,12 @@
         <td>{{ $album->data_lancamento }}</td>
         <td>{{ $album->banda_id }}</td>
         <td>
-          <a href="{{ route('albuns.ver_album_id', $album->id) }}">Ver</a>
+          <a href="{{ route('albuns.show', $album->id) }}">Ver</a>
         </td>
         <td>
            @if(auth()->check() && auth()->user()->type === 'admin')
          
-          <a href="{{ route('albuns.update', $album->id) }}" class="btn btn-warning">Editar</a>
+          <a href="{{ route('albuns.edit', $album->id) }}" class="btn btn-warning">Editar</a>
           <form action="{{ route('albuns.destroy', $album->id) }}" method="POST">
             @csrf
             @method('DELETE')
@@ -47,7 +47,7 @@
             @endif
 
           @if(auth()->check() && auth()->user()->type === 'user')
-          <a href="{{ route('albuns.update', $album->id) }}" class="btn btn-warning">Editar</a>
+          <a href="{{ route('albuns.edit', $album->id) }}" class="btn btn-warning">Editar</a>
           @endif
           </form>
           
@@ -55,10 +55,11 @@
         
       </tr>
     @endforeach
+   
   </tbody>
 </table>
 
 @if(auth()->check() && auth()->user()->type === 'admin')
- <a href="{{ route('albuns.add_album') }}" class="btn btn-primary">Adicionar Album </a>
+ <a href="{{ route('albuns.create') }}" class="btn btn-primary">Adicionar Album </a>
 @endif
 @endsection

@@ -90,5 +90,13 @@ function destroy($id) {//apagar
     $banda->delete();
     return redirect()->route('bandas.index')->with('success', 'Banda apagada com sucesso!');
 }
-    //
+
+function show($id) {
+    // $banda = Banda::findOrFail($id);
+    // return view('bandas.index', compact('banda'));
+
+     $banda = Banda::find($id);
+    return view('bandas.ver_banda_id', compact('banda'));
+
+}
 }

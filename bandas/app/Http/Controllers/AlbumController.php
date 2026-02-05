@@ -12,6 +12,11 @@ public function create() {
     return view('albuns.add_album');
 }
 
+public function edit($id) { //formulario editar
+    $album = Album::findOrFail($id);
+    return view('albuns.edit', compact('album'));
+}
+
 public function store(Request $request) {
     // $album = new \App\Models\Album();
 
@@ -54,7 +59,30 @@ public function index() {
 }
 
 public function update(Request $request, $id) {
-    $album = \App\Models\Album::find($id);
+    // $album = \App\Models\Album::find($id);
+
+    $request->validate([
+        'nome' => 'required|string|max:50',
+        'src_imagem' => 'nullable|image|max:2048',
+        'data_lancamento' => 'nullable|date',
+        'banda_id' => 'required|exists:bandas,id',
+    ]);
+
+    $album = Album::findOrFail($id);
+
+    $album->nome = $request->nome;
+    $album->data_lancamento = $request->data_lancamento;
+    $album->banda_id = $request->banda_id;
+
+      if ($request->hasFile('src_imagem')) {
+        $caminhoFoto = $request->file('src_imagem')->store('albuns', 'public');
+        $album->src_imagem = $caminhoFoto;
+    }
+
+    $album->save();
+
+
+    return redirect()->route('albuns.index');
 }
 
 function destroy($id) {
@@ -69,4 +97,11 @@ public function verAlbunsBandaId($bandaId) {
     return view('albuns.details_album_banda_id', compact('albuns'));
     //
 }
+
+public function show($id)
+{
+     $album = Album::find($id);
+    return view('albuns.ver', compact('album'));
+}
+
 }

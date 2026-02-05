@@ -24,15 +24,22 @@
         <td>{{ $user->email }}</td>
         
         <td>
-          <a href="{{ route('users.details_user', $user->id) }}" >Detalhes do user</a>
+          <a href="{{ route('users.show', $user->id) }}" >Detalhes do user</a>
         </td>
         <td>
-          <a href="{{ route('users.add_user') }}" class="btn btn-primary">Adicionar </a>
+            @if(auth()->check() && auth()->user()->type === 'admin')
+          <!-- <a href="{{ route('users.create') }}" class="btn btn-primary">Adicionar </a> -->
           <a href="{{ route('users.update', $user->id) }}" class="btn btn-warning">Editar</a>
           <form action="{{ route('users.destroy', $user->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Remover</button>
+             @endif
+
+
+             @if(auth()->check() && auth()->user()->type === 'user')
+          <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Editar</a>
+          @endif
           </form>
         </td>
         
@@ -40,4 +47,8 @@
     @endforeach
   </tbody>
 </table>
+
+@if(auth()->check() && auth()->user()->type === 'admin')
+<a href="{{ route('users.create') }}" class="btn btn-primary">Adicionar User </a>
+@endif
 @endsection

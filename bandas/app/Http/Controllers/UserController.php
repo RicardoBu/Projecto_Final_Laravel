@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
+
 class UserController extends Controller
 {
 
@@ -62,6 +63,11 @@ function destroy($id) {
  
  
         return back();
+}
+
+function show($id) {
+    $user = User::find($id);
+    return view('users.edit', compact('user'));
 }
     //
 }
